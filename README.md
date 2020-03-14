@@ -2,26 +2,22 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
 
-## Development server
+## Generalidades 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Front para el trabajo Trabajo Practico nº1 Laboratorio 4.
+Abm empresa, noticia. 
+Profesor Gerardo Magni
 
-## Code scaffolding
+## Desarrolladores a Cargo
+[Ramiro Lopez](https://github.com/RamiroLopez47)
+[Cattani Marcelo](https://github.com/marcelocattani)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Compañeros de equipo
+[Matias Ramos](https://github.com/Matthew-UTN)
+[Juan Vargas](https://github.com/vargasjuanj)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Material Base
+Boceto de [Uml](https://drive.google.com/open?id=1JSLp4UJIGLStgzGYE5kafdTZpvqLvL7V)
+[Template a Seguir](https://drive.google.com/open?id=1czn7PPkhk5kxNNPyBRQfDPMcYY6gFxuD)
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
