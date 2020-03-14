@@ -1,4 +1,4 @@
-export interface empresa{
+export interface Empresa{
    id?:number;
    denominacion:string;
    telefono:string;
