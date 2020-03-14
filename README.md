@@ -9,8 +9,8 @@ Abm empresa, noticia.
 Profesor Gerardo Magni  
 
 ## Desarrolladores a Cargo
-[Ramiro Lopez](https://github.com/RamiroLopez47)
-[Cattani Marcelo](https://github.com/marcelocattani)
+[Ramiro Lopez](https://github.com/RamiroLopez47)  
+[Cattani Marcelo](https://github.com/marcelocattani)  
 
 ## Compañeros de equipo
 [Matias Ramos](https://github.com/Matthew-UTN)  
