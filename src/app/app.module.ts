@@ -11,6 +11,7 @@ import { Page404Component } from './components/page404/page404.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { DetalleComponent } from './components/detalle/detalle.component';
 import { HomeComponent } from './components/home/home.component';
+import { TinyComponent } from './components/tiny/tiny.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HomeComponent } from './components/home/home.component';
     Page404Component,
     BuscadorComponent,
     DetalleComponent,
-    HomeComponent
+    HomeComponent,
+    TinyComponent
   ],
   imports: [
     BrowserModule,
