@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 // H T T P
 import {HttpClientModule} from '@angular/common/http';
 import { IndexComponent } from './components/index/index.component';
-import { Page404Component } from './components/page404/page404.component'
+import { Page404Component } from './components/page404/page404.component';
+import { BuscadorComponent } from './components/buscador/buscador.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
-    Page404Component
+    Page404Component,
+    BuscadorComponent
   ],
   imports: [
     BrowserModule,
