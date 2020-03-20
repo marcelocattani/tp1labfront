@@ -10,6 +10,6 @@ export class EmpresaService extends CommonService<Empresa>{
 
   constructor(http: HttpClient) {
     super(http);
-    this.baseUrl = "http://localhost:8080/api/v1/empresas/";
+    this.baseUrl = "http://localhost:9001/api/v1/empresas/";
   }
 }
