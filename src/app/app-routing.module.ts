@@ -1,3 +1,8 @@
+import { Page404Component } from './components/page404/page404.component';
+import { TinyComponent } from './components/tiny/tiny.component';
+import { HomeComponent } from './components/home/home.component';
+import { DetalleComponent } from './components/detalle/detalle.component';
+import { BuscadorComponent } from './components/buscador/buscador.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './components/index/index.component';
@@ -5,7 +10,11 @@ import { IndexComponent } from './components/index/index.component';
 
 const routes: Routes = [
   {path : '', component: IndexComponent},
-  {path: '**', pathMatch: 'full', redirectTo: ''}
+  {path: 'buscador',component: BuscadorComponent},
+  {path: 'detalle',component: DetalleComponent},
+  {path: 'home',component: HomeComponent},
+  {path: 'tiny',component: TinyComponent},
+  {path: '**',component: Page404Component},
 ];
 
 @NgModule({
