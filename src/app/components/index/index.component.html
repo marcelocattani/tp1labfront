@@ -1,50 +1,10 @@
 <table>
-    <tr>
+    <tr *ngFor="let empresa of empresas">
         <td>
-            XXXXXXXX
+            {{empresa.denominacion}}
         </td>
         <td>
-            <a href="#">URL PAGINA HOME</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            XXXXXXXX
-        </td>
-        <td>
-            <a href="#">URL PAGINA HOME</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            XXXXXXXX
-        </td>
-        <td>
-            <a href="#">URL PAGINA HOME</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            XXXXXXXX
-        </td>
-        <td>
-            <a href="#">URL PAGINA HOME</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            XXXXXXXX
-        </td>
-        <td>
-            <a href="#">URL PAGINA HOME</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            XXXXXXXX
-        </td>
-        <td>
-            <a href="#">URL PAGINA HOME</a>
+            <a href="#" routerLink="/home/{{empresa.id}}">URL PAGINA HOME</a>
         </td>
     </tr>
 </table>

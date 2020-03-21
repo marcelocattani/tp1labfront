@@ -12,7 +12,7 @@ const routes: Routes = [
   {path : '', component: IndexComponent},
   {path: 'buscador',component: BuscadorComponent},
   {path: 'detalle',component: DetalleComponent},
-  {path: 'home',component: HomeComponent},
+  {path: 'home/:id',component: HomeComponent},
   {path: 'tiny',component: TinyComponent},
   {path: '**',component: Page404Component},
 ];
