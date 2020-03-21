@@ -6,12 +6,18 @@ import { AppComponent } from './app.component';
 
 // H T T P
 import {HttpClientModule} from '@angular/common/http';
+
+//Componentes
 import { IndexComponent } from './components/index/index.component';
 import { Page404Component } from './components/page404/page404.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { DetalleComponent } from './components/detalle/detalle.component';
 import { HomeComponent } from './components/home/home.component';
 import { TinyComponent } from './components/tiny/tiny.component';
+
+
+//Formularios
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +32,8 @@ import { TinyComponent } from './components/tiny/tiny.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

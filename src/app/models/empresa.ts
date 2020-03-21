@@ -2,7 +2,7 @@ export interface Empresa{
    id?:number;
    denominacion:string;
    telefono:string;
-   hoarioDeAtencion:string;
+   horarioDeAtencion:string;
    quienesSomos:string;
    latitud:number;
    longitud:number;
