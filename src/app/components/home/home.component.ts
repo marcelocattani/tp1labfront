@@ -1,10 +1,11 @@
+import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { EmpresaService } from '../../services/empresa.service';
 import { NoticiaService } from '../../services/noticia.service';
 import { ActivatedRoute } from '@angular/router';
 import { Empresa } from '../../models/empresa';
 import { NgForm } from '@angular/forms';
-
+import * as Mapboxgl from 'mapbox-gl';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,6 +13,7 @@ import { NgForm } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
 
+  mapa: Mapboxgl.Map;
 
   public empresa: Empresa = {
     id: null,
@@ -30,11 +32,14 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     const idEmpresa = this.router.snapshot.params['id'];
     this.getDetails(idEmpresa);
+    
   }
 
   private getDetails(id: number) {
     this.empresaService.getOne(id).subscribe(data => {
       this.empresa = data;
+      this.iniciarMapa();
+      this.crearMarcador();
     })
   }
 
@@ -43,4 +48,23 @@ export class HomeComponent implements OnInit {
     console.info(formulario.value.termino);    
   }
 
+public iniciarMapa(){  
+  Mapboxgl.accessToken = environment.mapboxKey;
+  this.mapa = new Mapboxgl.Map({
+  container: 'mapbox-mapa', // container id
+  style: 'mapbox://styles/mapbox/streets-v11',
+  center: [this.empresa.longitud,this.empresa.latitud], // posicion de inicio (LONG - LAT)
+  zoom: 16 // starting zoom
+  });
+}
+
+  public async crearMarcador(){
+    var marker = new Mapboxgl.Marker({
+      draggable: false
+      })
+      .setLngLat([this.empresa.longitud,this.empresa.latitud])
+      
+      .addTo(this.mapa);
+      console.log('LONG='+this.empresa.longitud+'LAT= '+this.empresa.latitud);
+  }
 }
