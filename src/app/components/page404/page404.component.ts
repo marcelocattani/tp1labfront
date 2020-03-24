@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-page404',
@@ -12,4 +13,8 @@ export class Page404Component implements OnInit {
   ngOnInit(): void {
   }
 
+  public buscar(formulario : NgForm){
+    console.info("Metodo no implementado")
+    console.info(formulario.value.termino);    
+  }
 }
