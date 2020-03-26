@@ -1,10 +1,17 @@
 import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
+
+
+import { Noticia } from 'src/app/models/noticia';
+import { Empresa } from '../../models/empresa';
+
+
 import { EmpresaService } from '../../services/empresa.service';
 import { NoticiaService } from '../../services/noticia.service';
-import { ActivatedRoute } from '@angular/router';
-import { Empresa } from '../../models/empresa';
-import { NgForm } from '@angular/forms';
+
+
 import * as Mapboxgl from 'mapbox-gl';
 @Component({
   selector: 'app-home',
@@ -27,7 +34,10 @@ export class HomeComponent implements OnInit {
     telefono : ""
   };
 
-  constructor(private empresaService: EmpresaService, private noticaService: NoticiaService, private router: ActivatedRoute) { }
+  
+  public noticias: Noticia[] ;
+
+  constructor(private empresaService: EmpresaService, private noticiaService: NoticiaService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
     const idEmpresa = this.router.snapshot.params['id'];
@@ -38,8 +48,14 @@ export class HomeComponent implements OnInit {
   private getDetails(id: number) {
     this.empresaService.getOne(id).subscribe(data => {
       this.empresa = data;
+
+
       this.iniciarMapa();
       this.crearMarcador();
+
+      this.noticiaService.getNoticia(id).subscribe(data => {
+        this.noticias = data;
+      });
     })
   }
 
