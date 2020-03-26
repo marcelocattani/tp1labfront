@@ -26,7 +26,7 @@
         </ul>
         <div class="contenedor-buscador d-blok bg-red">
 
-            
+
 
             <div class="nav-item mr-4" style="float: left">
                 <span style="color:white">Telefono: </span>
@@ -65,57 +65,19 @@
                 </ol>
                 <div class="carousel-inner">
 
-                    <!-- P R I M E R A S     5  N O T I C I A S  -->
+                    <!-- P R I M E R A S    5    N O T I C I A S  -->
 
-                    <div class="carousel-item active">
-                        <a href="#">
-                            <img img src="https://picsum.photos/id/1/800/300" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>First slide label</h5>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="carousel-item">
-                        <a href="#">
-                            <img img src="https://picsum.photos/id/1/800/300" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>First slide label</h5>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="carousel-item">
-                        <a href="#">
-                            <img img src="https://picsum.photos/id/1/800/300" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>First slide label</h5>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="carousel-item">
-                        <a href="#">
-                            <img img src="https://picsum.photos/id/1/800/300" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>First slide label</h5>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="carousel-item">
-                        <a href="#">
-                            <img img src="https://picsum.photos/id/1/800/300" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>First slide label</h5>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </div>
-                        </a>
-                    </div>
+                    <tr *ngFor="let noticia of noticias">
+                        <div class="carousel-item active">
+                            <a href="/detalle/?{{noticia.id}}">
+                                <img img src="{{noticia.imagenNoticia}}" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>{{noticia.tituloDeLaNoticia}}</h5>
+                                    <p>{{noticia.resumenDeLaNoticia}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </tr>
 
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
@@ -173,6 +135,10 @@
 
     <pre>
         {{empresa | json}}
+    </pre>
+
+    <pre>
+        {{noticias | json}}
     </pre>
 
 </body>

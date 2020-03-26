@@ -14,7 +14,8 @@ export class NoticiaService extends CommonService<Noticia> {
     this.baseUrl ="http://localhost:9001/api/v1/noticia/";
    }
    
-   public get(id : number): Observable<Noticia[]> {
+   public getNoticia(id : number): Observable<Noticia[]> {
     return this.http.get<Noticia[]>(this.baseUrl+"?idEmpresa="+id);
    }
+
 }
