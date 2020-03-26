@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CommonService <E>{
 
-  constructor(private http : HttpClient) { }
+  constructor(public http : HttpClient) { }
 
   protected baseUrl: string;  
 
