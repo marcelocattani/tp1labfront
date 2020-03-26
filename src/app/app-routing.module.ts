@@ -1,11 +1,11 @@
 import { Page404Component } from './components/page404/page404.component';
-import { TinyComponent } from './components/tiny/tiny.component';
 import { HomeComponent } from './components/home/home.component';
 import { DetalleComponent } from './components/detalle/detalle.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './components/index/index.component';
+import { TinyComponent } from './components/tiny/tiny.component';
 
 
 const routes: Routes = [

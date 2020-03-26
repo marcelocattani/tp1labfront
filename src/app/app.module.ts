@@ -1,13 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+
 
 // H T T P
 import {HttpClientModule} from '@angular/common/http';
 
 //Componentes
+
+import { AppComponent } from './app.component';
 import { IndexComponent } from './components/index/index.component';
 import { Page404Component } from './components/page404/page404.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
@@ -15,9 +17,12 @@ import { DetalleComponent } from './components/detalle/detalle.component';
 import { HomeComponent } from './components/home/home.component';
 import { TinyComponent } from './components/tiny/tiny.component';
 
-
 //Formularios
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+//Editor tyny
+import {EditorModule} from '@tinymce/tinymce-angular';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +38,11 @@ import {FormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    
+    FormsModule,
+    EditorModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
