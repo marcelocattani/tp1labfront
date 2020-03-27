@@ -1,3 +1,4 @@
+import { Empresa } from './empresa';
 export interface Noticia{
     id?: number
     tituloDeLaNoticia:string
@@ -6,4 +7,5 @@ export interface Noticia{
     contenidoHtml:string
     fechaPublicacion:string
     publicada:string
+    empresa  ?: Empresa
 }
