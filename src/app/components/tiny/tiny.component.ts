@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {Router} from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NoticiaService } from 'src/app/services/noticia.service';
 import { Noticia } from 'src/app/models/noticia';
+import { Empresa } from 'src/app/models/empresa';
+import { EmpresaService } from 'src/app/services/empresa.service';
 
 @Component({
   selector: 'app-tiny',
@@ -10,50 +12,109 @@ import { Noticia } from 'src/app/models/noticia';
   styleUrls: ['./tiny.component.css']
 })
 export class TinyComponent implements OnInit {
-
+  idAux:number
+  seleccionado:Empresa={
+    denominacion:'algo',
+    telefono:'',
+    latitud:0,
+    longitud:0,
+    email:'',
+    quienesSomos:'',
+    domicilio:'',
+    horarioDeAtencion:''
+  }
   tinyForm: FormGroup
-  noticia: Noticia
-  title = new FormControl('')
-  content = new FormControl('')
-  summary= new FormControl('')
-  imageURL=new FormControl('')
+  empresas:Empresa[]=[]
+  noticia: Noticia={
+    id: 0,
+    tituloDeLaNoticia: '',
+    resumenDeLaNoticia: '',
+    imagenNoticia: '',
+    contenidoHtml: '',
+    fechaPublicacion: '',
+    publicada: '',
+    empresa: null
+  }
+  constructor(private noticiaService: NoticiaService, private empresaService:EmpresaService, private router: Router, private ruta: ActivatedRoute) {
+  this.getAllEnterprise()
+    this.load();
 
-  constructor(private noticiaService: NoticiaService, private router: Router) {
-    this.tinyForm = new FormGroup({
-      title: this.title,
-      content: this.content,
-      summary:this.summary,
-      imageURL:this.imageURL
-    });
-    this.noticia = {
-      id:0,
-      tituloDeLaNoticia:'',
-      resumenDeLaNoticia:'',
-      imagenNoticia:'',
-      contenidoHtml:'',
-      fechaPublicacion:'',
-      publicada:''
-    }
+  }
+  getAllEnterprise(){
+    this.empresaService.getAll().subscribe(res=>{
+      this.empresas=res;
+      console.log("EMPRESAS")
+      console.log(this.empresas)
+    })
+  }
+  load() {
+    this.ruta.params.subscribe(params => {
+      if(params['id']==0){
+        this.idAux=0;
+        this.createReactiveForm(this.noticia);
+        return;
+      }
+      this.noticiaService.getOne(params['id']).subscribe(data => {
+        console.log(data)
+        this.idAux=params['id']
+        this.createReactiveForm(data)
+      })
+
+    })
   }
 
+createReactiveForm(data:Noticia){
+  this.tinyForm = new FormGroup({
+    title: new FormControl(data.tituloDeLaNoticia),
+    content: new FormControl(data.contenidoHtml),
+    summary: new FormControl(data.resumenDeLaNoticia),
+    imageURL: new FormControl(data.imagenNoticia),
+
+  });
+  this.noticia.empresa=data.empresa
+}
   ngOnInit() {
-    
   }
 
-  addNotice() {
-    let date= new Date();
-    console.log(this.tinyForm.get('title'))
-    console.log(this.tinyForm.get('imageURL'))
-    console.log(this.tinyForm.get('content'))
-    console.log(this.tinyForm.get('summary'))
+  addNews() {
+    if(this.idAux===0){
+      this.saveNews();
+      return;
+    }
+    this.updateNews();
+   
+  }
+
+  saveNews(){
+    console.log('SAVE')
+    let date = new Date();
     this.noticia.tituloDeLaNoticia = this.tinyForm.get('title').value
-    this.noticia.imagenNoticia=this.tinyForm.get('imageURL').value
+    this.noticia.imagenNoticia = this.tinyForm.get('imageURL').value
     this.noticia.contenidoHtml = this.tinyForm.get('content').value
-    this.noticia.resumenDeLaNoticia=this.tinyForm.get('summary').value
-    this.noticia.fechaPublicacion=date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate();
-    this.noticia.publicada='Y';
-    console.log(this.noticia.contenidoHtml)
+    this.noticia.resumenDeLaNoticia = this.tinyForm.get('summary').value
+    this.noticia.fechaPublicacion = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
+    this.noticia.publicada = 'Y';
+    this.noticia.empresa.id=this.seleccionado.id
+    console.log(this.noticia.empresa.id)
+
     this.noticiaService.post(this.noticia).subscribe(data => {
+      console.log(data)
+    }, error => {
+      console.log('Failure Response')
+    })
+  }
+  updateNews(){
+    console.log('UPDATE')
+    let date = new Date();
+    this.noticia.tituloDeLaNoticia = this.tinyForm.get('title').value
+    this.noticia.imagenNoticia = this.tinyForm.get('imageURL').value
+    this.noticia.contenidoHtml = this.tinyForm.get('content').value
+    this.noticia.resumenDeLaNoticia = this.tinyForm.get('summary').value
+    this.noticia.fechaPublicacion = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
+    this.noticia.publicada = 'Y';
+    this.noticia.empresa.id=this.seleccionado.id
+    console.log(this.noticia.empresa.id)
+    this.noticiaService.put(this.idAux,this.noticia).subscribe(data => {
       console.log(data)
     }, error => {
       console.log('Failure Response')

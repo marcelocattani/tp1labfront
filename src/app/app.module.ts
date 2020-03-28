@@ -22,6 +22,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 //Editor tyny
 import {EditorModule} from '@tinymce/tinymce-angular';
+import { AbmNoticiaComponent } from './components/abm-noticia/abm-noticia.component';
+
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import {EditorModule} from '@tinymce/tinymce-angular';
     BuscadorComponent,
     DetalleComponent,
     HomeComponent,
-    TinyComponent
+    TinyComponent,
+    AbmNoticiaComponent
   ],
   imports: [
     BrowserModule,
