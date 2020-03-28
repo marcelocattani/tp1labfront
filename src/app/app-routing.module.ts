@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'detalle/:id',component: DetalleComponent},
   {path: 'home/:id',component: HomeComponent},
   {path: 'tiny/:id',component: TinyComponent},
-  {path: 'abmnoticia',component: AbmNoticiaComponent},
+  {path: 'abmnoticias',component: AbmNoticiaComponent},
   {path: '**',component: Page404Component},
 ];
 
