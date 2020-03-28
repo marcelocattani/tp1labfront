@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Host } from '@angular/core';
 import { Noticia } from '../../models/noticia';
 import { Router } from '@angular/router';
 import { NoticiaService } from 'src/app/services/noticia.service';
 import { NgForm } from '@angular/forms';
+import { Empresa } from '../../models/empresa'
+
 
 @Component({
   selector: 'app-buscador',
@@ -17,7 +19,11 @@ export class BuscadorComponent implements OnInit {
   public noticias: Noticia[];
 
   ngOnInit(): void {
+    this.textoBuscado=this.noticiaService.textoBuscado;
+    this.noticiaService.textoBuscado='';
+    this.getNoticias(); 
   }
+
 
 
   goNoticia(id: number) {
@@ -25,8 +31,6 @@ export class BuscadorComponent implements OnInit {
   }
 
   public buscar(formulario : NgForm){
-    console.info("Metodo no implementado")
-    console.info(formulario.value.textoBuscado);
     this.textoBuscado=formulario.value.textoBuscado;
     this.getNoticias();    
   }

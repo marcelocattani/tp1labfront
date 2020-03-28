@@ -33,6 +33,8 @@ export class CommonService <E>{
   }
 
   buscar(texto: string){
-    return this.http.get<E[]>(this.baseUrl + 'buscar/' + texto);
+    return this.http.get<E[]>(this.baseUrl + 'search?word=' + texto);
   }
+
+  
 }
