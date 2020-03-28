@@ -23,6 +23,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 //Editor tyny
 import {EditorModule} from '@tinymce/tinymce-angular';
 import { AbmNoticiaComponent } from './components/abm-noticia/abm-noticia.component';
+import { AbmEmpresaComponent } from './components/abm-empresa/abm-empresa.component';
 
 
 
@@ -35,7 +36,8 @@ import { AbmNoticiaComponent } from './components/abm-noticia/abm-noticia.compon
     DetalleComponent,
     HomeComponent,
     TinyComponent,
-    AbmNoticiaComponent
+    AbmNoticiaComponent,
+    AbmEmpresaComponent
   ],
   imports: [
     BrowserModule,
