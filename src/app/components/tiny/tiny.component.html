@@ -24,6 +24,7 @@
         <label class="news-title">Title</label>
         <input name="title"[(ngModel)]="titleNews" type="text" class="form-control" placeholder="Title">
       </div>
+
       </div>
       <div class="form-group">
         <label class="news-title">Image</label>
@@ -43,8 +44,10 @@
         <textarea name="Summary" [(ngModel)]="summary" class='form-control' rows="3" ></textarea>
       </div>
       <div class="form-group">
+
         <button  *ngIf="idAux===0 else updateNews" type="submit" class="btn btn-primary">Post</button>
         <ng-template #updateNews>
+
           <button type="submit" class="btn btn-primary">Update</button>
       </ng-template>
       </div>

@@ -18,6 +18,7 @@ export class TinyComponent implements OnInit {
   summary:string
   idEnterprise:number
   empresas:Empresa[]
+
   noticia: Noticia={
     id: 0,
     tituloDeLaNoticia: '',
@@ -37,6 +38,7 @@ export class TinyComponent implements OnInit {
       domicilio:'',
       horarioDeAtencion:''
     }
+
   }
   constructor(private noticiaService: NoticiaService, private empresaService:EmpresaService, private router: Router, private ruta: ActivatedRoute) {
     this.getAllEnterprise()
@@ -54,12 +56,12 @@ export class TinyComponent implements OnInit {
     this.ruta.params.subscribe(params => {
       if(params['id']==0){
         this.idAux=0;
-        this.LoadAtributes(this.noticia);
+        this.loadAtributes(this.noticia);
         return;
       }
       this.noticiaService.getOne(params['id']).subscribe(data => {
         this.idAux=params['id']
-        this.LoadAtributes(data)
+        this.loadAtributes(data)
       }, error => {
         console.log('Failure Response (getOne News)')
       })
@@ -67,7 +69,7 @@ export class TinyComponent implements OnInit {
     })
   }
 
-LoadAtributes(data:Noticia){
+loadAtributes(data:Noticia){
 this.titleNews=data.tituloDeLaNoticia
 this.srcImg=data.imagenNoticia
 this.noticia.empresa=data.empresa
@@ -89,6 +91,7 @@ mostrar(algo:any){
     this.updateNews();
    
   }
+
 prepareNews(){
   let date = new Date();
     this.noticia.tituloDeLaNoticia = this.titleNews
@@ -118,4 +121,5 @@ prepareNews(){
     })
 
   }
+
 }

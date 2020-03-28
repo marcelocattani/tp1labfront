@@ -12,7 +12,6 @@ export class NoticiaService extends CommonService<Noticia> {
 
   constructor(http: HttpClient) {
     super(http);
-
     this.baseUrl = "http://localhost:9001/api/v1/noticias/";
   }
 
