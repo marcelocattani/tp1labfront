@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ export class CommonService <E>{
   constructor(public http : HttpClient) { }
 
   protected baseUrl: string;  
+  protected busca: string;
 
   getAll(): Observable<E[]> {
     return this.http.get<E[]>(this.baseUrl);
@@ -31,4 +32,7 @@ export class CommonService <E>{
     return this.http.put<E>(this.baseUrl + id, entity);
   }
 
+  
+
+  
 }

@@ -1,7 +1,7 @@
 import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 import { Noticia } from 'src/app/models/noticia';
@@ -21,6 +21,7 @@ import * as Mapboxgl from 'mapbox-gl';
 export class HomeComponent implements OnInit {
 
   mapa: Mapboxgl.Map;
+  textoBuscadoDeAfuera= '';
 
   public empresa: Empresa = {
     id: null,
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit {
   
   public noticias: Noticia[] ;
 
-  constructor(private empresaService: EmpresaService, private noticiaService: NoticiaService, private router: ActivatedRoute) { }
+  constructor(private empresaService: EmpresaService, private noticiaService: NoticiaService, private router: ActivatedRoute, private cambioDeRutas: Router) { }
 
   ngOnInit(): void {
     const idEmpresa = this.router.snapshot.params['id'];
@@ -60,8 +61,9 @@ export class HomeComponent implements OnInit {
   }
 
   public buscar(formulario : NgForm){
-    console.info("Metodo no implementado")
-    console.info(formulario.value.termino);    
+    this.noticiaService.textoBuscado=formulario.value.termino;
+    console.log(this.noticiaService.textoBuscado+ " esto va al buscador");
+    this.cambioDeRutas.navigate(['/buscador']);   
   }
 
 public iniciarMapa(){  

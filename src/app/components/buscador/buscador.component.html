@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="format-detection" content="telephone=no"/>
+  <meta name="format-detection" content="telephone=no" />
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <title>PRIVACY</title>
 
@@ -32,192 +33,121 @@
   <![endif]-->
   <script src='/src/app/template/js/device.min.js'></script>
 </head>
+
 <body>
-<div class="page">
-  <!--========================================================
+  <div class="page">
+    <!--========================================================
                             HEADER
   =========================================================-->
-  <header>
-    <div class="container top-sect">
-      <div class="navbar-header">
-        <h1 class="navbar-brand">
-          <a data-type='rd-navbar-brand'  href="./"><small>Denominación <br>Empresa</small></a>
-        </h1>
-        <a class="search-form_toggle" href="#"></a>
+
+    <header>
+      
+
+      <div class="navbar navbar-dark bg-primary">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li>
+            <h1>
+              <a data-type='rd-navbar-brand' href="./" span style="color:white"><small>Denominación <br>Empresa</small></a>
+            </h1>
+          </li>
+        </ul>
+        <div class="contenedor-buscador d-blok bg-red">
+          <div class="nav-item mr-4" style="float: left">
+            <span style="color:white">Telefono: </span>
+            <br>
+            <h3><a href="callto:#" style="color:white"> 800-2345-6789</a></h3>
+          </div>
+          <div class="nav-item mr-4" style="float: left">
+            <small>
+              <span style="color:white">Horario: </span>
+              <br>
+              <h3><span style="color:white">6am-4pm PST M-Th; &nbsp;6am-3pm PST Fri</span></h3>
+            </small>
+          </div>
+        </div>
       </div>
 
-      <div class="help-box text-right">
-        <p>Telefono</p>
-        <a href="callto:#">800-2345-6789</a>
-        <small><span>Horario:</span>  6am-4pm PST M-Th; &nbsp;6am-3pm PST Fri</small>
+      <div class="navbar navbar-dark bg-primary">
+        <div class="col-lg-9"></div>
+        <div class="col-lg-3">
+          <form (ngSubmit)="buscar(buscador)" #buscador="ngForm" class="mt-3" style="float: left">
+            <input type="text" name="textoBuscado" ngModel>
+            <button class="btn btn-secondary ml-2" type="submit">Buscar</button>
+          </form>
+        </div>
       </div>
-    </div>
+    </header>
 
-    <div id="stuck_container" class="stuck_container">
-      <div class="container">
-
-        <form class="search-form" action="search.php" method="GET" accept-charset="utf-8">
-          <label class="search-form_label">
-            <input class="search-form_input" type="text" name="s" autocomplete="off" placeholder=""/>
-            <span class="search-form_liveout"></span>
-          </label>
-          <button class="search-form_submit fa-search" type="submit"></button>
-        </form>
-
-      </div>
-
-    </div>
-
-  </header>
-
-  <!--========================================================
+    <!--========================================================
                             CONTENT
   =========================================================-->
 
-  <main>
+    <main>
 
-    <section class="well well4">
+      <section class="well well4">
 
-      <div class="container">
+        <div class="container">
 
-        <h2>
-          Texto Buscado
-        </h2>
-        <div class="row offs2">
+          <h2>
+            Texto Buscado:
+            {{textoBuscado}}
+          </h2>
+          <div class="row offs2">
+            <table width="90%" align="center">
+              <tbody *ngFor="let noticia of noticias">
+                <tr>
+                  <td>
+                    <a href="noticia.php?idNoticia=870">
+                      <img width="250px" class="imgNoticia"
+                        src="http://localhost:82/template_html/images/page-1_slide1.jpg?1583775512626" alt="">
+                    </a>
+                  </td>
+                  <td width="25"></td>
+                  <td style="text-align:justify;" valign="top">
+                    <a style="text-align:justify; font-size:20px" href="noticia.php?idNoticia=870" class="banner">
+                      {{noticia.tituloDeLaNoticia}} </a>
+                    <div class="verOcultar">
+                      {{noticia.resumenDeLaNoticia}}<a href="noticia.php?idNoticia=870" style="color:blue"> Leer Mas -
+                        {{noticia.fechaPublicacion}}</a>
+                    </div>
+                  </td>                 
+                </tr>
+                <span layout="row"><hr flex/></span>
+              </tbody>
+            </table>
 
-          <table width="90%" align="center">
-            <tbody>
-            <tr>
-              <td>
-                <a href="noticia.php?idNoticia=870">
-                  <img width="250px" class="imgNoticia" src="http://localhost:82/template_html/images/page-1_slide1.jpg?1583775512626" alt="">
-                </a>
-              </td>
-              <td width="25"></td>
-              <td style="text-align:justify;" valign="top">
-                <a style="text-align:justify; font-size:20px" href="noticia.php?idNoticia=870" class="banner">
-                  Titulo									</a>
-                <div class="verOcultar">
-                  Resumen de la Noticia<a href="noticia.php?idNoticia=870" style="color:blue"> Leer Mas - 2020-02-14</a>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-          <hr>
-          <table width="90%" align="center">
-            <tbody>
-            <tr>
-              <td>
-                <a href="noticia.php?idNoticia=870">
-                  <img width="250px" class="imgNoticia" src="http://localhost:82/template_html/images/page-1_slide1.jpg?1583775512626" alt="">
-                </a>
-              </td>
-              <td width="25"></td>
-              <td style="text-align:justify;" valign="top">
-                <a style="text-align:justify; font-size:20px" href="noticia.php?idNoticia=870" class="banner">
-                  Titulo									</a>
-                <div class="verOcultar">
-                  Resumen de la Noticia<a href="noticia.php?idNoticia=870" style="color:blue"> Leer Mas - 2020-02-14</a>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-          <hr>
-          <table width="90%" align="center">
-            <tbody>
-            <tr>
-              <td>
-                <a href="noticia.php?idNoticia=870">
-                  <img width="250px" class="imgNoticia" src="http://localhost:82/template_html/images/page-1_slide1.jpg?1583775512626" alt="">
-                </a>
-              </td>
-              <td width="25"></td>
-              <td style="text-align:justify;" valign="top">
-                <a style="text-align:justify; font-size:20px" href="noticia.php?idNoticia=870" class="banner">
-                  Titulo									</a>
-                <div class="verOcultar">
-                  Resumen de la Noticia<a href="noticia.php?idNoticia=870" style="color:blue"> Leer Mas - 2020-02-14</a>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-          <hr>
-          <table width="90%" align="center">
-            <tbody>
-            <tr>
-              <td>
-                <a href="noticia.php?idNoticia=870">
-                  <img width="250px" class="imgNoticia" src="http://localhost:82/template_html/images/page-1_slide1.jpg?1583775512626" alt="">
-                </a>
-              </td>
-              <td width="25"></td>
-              <td style="text-align:justify;" valign="top">
-                <a style="text-align:justify; font-size:20px" href="noticia.php?idNoticia=870" class="banner">
-                  Titulo									</a>
-                <div class="verOcultar">
-                  Resumen de la Noticia<a href="noticia.php?idNoticia=870" style="color:blue"> Leer Mas - 2020-02-14</a>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-          <hr>
-          <table width="90%" align="center">
-            <tbody>
-            <tr>
-              <td>
-                <a href="noticia.php?idNoticia=870">
-                  <img width="250px" class="imgNoticia" src="http://localhost:82/template_html/images/page-1_slide1.jpg?1583775512626" alt="">
-                </a>
-              </td>
-              <td width="25"></td>
-              <td style="text-align:justify;" valign="top">
-                <a style="text-align:justify; font-size:20px" href="noticia.php?idNoticia=870" class="banner">
-                  Titulo									</a>
-                <div class="verOcultar">
-                  Resumen de la Noticia<a href="noticia.php?idNoticia=870" style="color:blue"> Leer Mas - 2020-02-14</a>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-          <hr>
-
-
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
 
-  </main>
+    </main>
 
-  <!--========================================================
+    <!--========================================================
                           FOOTER
 =========================================================-->
-  <footer>
-    <section class="well">
-      <div class="container">
-        <p class="rights">
-          Denominación Empresa  &#169; <span id="copyright-year"></span>
-          <a href="index-5.html">Privacy Policy</a>
-          <!-- {%FOOTER_LINK} -->
-        </p>
-      </div>
-    </section>
-  </footer>
-</div>
+    <footer>
+      <section class="well">
+        <div class="container">
+          <p class="rights">
+            Denominación Empresa &#169; <span id="copyright-year"></span>
+            <a href="index-5.html">Privacy Policy</a>
+            <!-- {%FOOTER_LINK} -->
+          </p>
+        </div>
+      </section>
+    </footer>
+  </div>
 
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="/src/app/template/js/bootstrap.min.js"></script>
-<script src="/src/app/template/js/tm-scripts.js"></script>
-<!-- </script> -->
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="/src/app/template/js/bootstrap.min.js"></script>
+  <script src="/src/app/template/js/tm-scripts.js"></script>
+  <!-- </script> -->
 
-<!-- coded by vitlex -->
+  <!-- coded by vitlex -->
 
 </body>
+
 </html>
