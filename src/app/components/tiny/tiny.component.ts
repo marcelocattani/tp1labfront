@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NoticiaService } from 'src/app/services/noticia.service';
 import { Noticia } from 'src/app/models/noticia';
@@ -13,18 +12,13 @@ import { EmpresaService } from 'src/app/services/empresa.service';
 })
 export class TinyComponent implements OnInit {
   idAux:number
-  seleccionado:Empresa={
-    denominacion:'algo',
-    telefono:'',
-    latitud:0,
-    longitud:0,
-    email:'',
-    quienesSomos:'',
-    domicilio:'',
-    horarioDeAtencion:''
-  }
-  tinyForm: FormGroup
-  empresas:Empresa[]=[]
+  titleNews:string
+  srcImg:string
+  content:string
+  summary:string
+  idEnterprise:number
+  empresas:Empresa[]
+
   noticia: Noticia={
     id: 0,
     tituloDeLaNoticia: '',
@@ -33,45 +27,58 @@ export class TinyComponent implements OnInit {
     contenidoHtml: '',
     fechaPublicacion: '',
     publicada: '',
-    empresa: null
+    empresa: {
+      id:0,
+      denominacion:'',
+      telefono:'',
+      latitud:0,
+      longitud:0,
+      email:'',
+      quienesSomos:'',
+      domicilio:'',
+      horarioDeAtencion:''
+    }
+
   }
   constructor(private noticiaService: NoticiaService, private empresaService:EmpresaService, private router: Router, private ruta: ActivatedRoute) {
-  this.getAllEnterprise()
+    this.getAllEnterprise()
     this.load();
 
   }
   getAllEnterprise(){
     this.empresaService.getAll().subscribe(res=>{
       this.empresas=res;
-      console.log("EMPRESAS")
-      console.log(this.empresas)
+    }, error => {
+      console.log('Failure Response (getAllEnterprise)')
     })
   }
   load() {
     this.ruta.params.subscribe(params => {
       if(params['id']==0){
         this.idAux=0;
-        this.createReactiveForm(this.noticia);
+        this.loadAtributes(this.noticia);
         return;
       }
       this.noticiaService.getOne(params['id']).subscribe(data => {
-        console.log(data)
         this.idAux=params['id']
-        this.createReactiveForm(data)
+        this.loadAtributes(data)
+      }, error => {
+        console.log('Failure Response (getOne News)')
       })
 
     })
   }
 
-createReactiveForm(data:Noticia){
-  this.tinyForm = new FormGroup({
-    title: new FormControl(data.tituloDeLaNoticia),
-    content: new FormControl(data.contenidoHtml),
-    summary: new FormControl(data.resumenDeLaNoticia),
-    imageURL: new FormControl(data.imagenNoticia),
-
-  });
-  this.noticia.empresa=data.empresa
+loadAtributes(data:Noticia){
+this.titleNews=data.tituloDeLaNoticia
+this.srcImg=data.imagenNoticia
+this.noticia.empresa=data.empresa
+this.content=data.contenidoHtml
+this.summary=data.resumenDeLaNoticia
+}
+mostrar(algo:any){
+  console.log('mostrar')
+  console.log(algo)
 }
   ngOnInit() {
   }
@@ -85,39 +92,34 @@ createReactiveForm(data:Noticia){
    
   }
 
-  saveNews(){
-    console.log('SAVE')
-    let date = new Date();
-    this.noticia.tituloDeLaNoticia = this.tinyForm.get('title').value
-    this.noticia.imagenNoticia = this.tinyForm.get('imageURL').value
-    this.noticia.contenidoHtml = this.tinyForm.get('content').value
-    this.noticia.resumenDeLaNoticia = this.tinyForm.get('summary').value
+prepareNews(){
+  let date = new Date();
+    this.noticia.tituloDeLaNoticia = this.titleNews
+    this.noticia.contenidoHtml =this.content
+    this.noticia.resumenDeLaNoticia = this.summary
+    this.noticia.imagenNoticia=this.srcImg
     this.noticia.fechaPublicacion = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
     this.noticia.publicada = 'Y';
-    this.noticia.empresa.id=this.seleccionado.id
-    console.log(this.noticia.empresa.id)
-
+    this.noticia.empresa.id=this.idEnterprise
+    console.log(this.noticia)
+}
+  saveNews(){
+    this.prepareNews();
     this.noticiaService.post(this.noticia).subscribe(data => {
-      console.log(data)
+      this.router.navigate(['abmnoticias'])
     }, error => {
-      console.log('Failure Response')
+      console.log('Failure Response (saveNews)')
     })
+   
   }
   updateNews(){
-    console.log('UPDATE')
-    let date = new Date();
-    this.noticia.tituloDeLaNoticia = this.tinyForm.get('title').value
-    this.noticia.imagenNoticia = this.tinyForm.get('imageURL').value
-    this.noticia.contenidoHtml = this.tinyForm.get('content').value
-    this.noticia.resumenDeLaNoticia = this.tinyForm.get('summary').value
-    this.noticia.fechaPublicacion = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
-    this.noticia.publicada = 'Y';
-    this.noticia.empresa.id=this.seleccionado.id
-    console.log(this.noticia.empresa.id)
+    this.prepareNews();
     this.noticiaService.put(this.idAux,this.noticia).subscribe(data => {
-      console.log(data)
+      this.router.navigate(['abmnoticias'])
     }, error => {
-      console.log('Failure Response')
+      console.log('Failure Response (updateNews)')
     })
+
   }
+
 }
