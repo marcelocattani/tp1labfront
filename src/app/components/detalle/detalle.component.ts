@@ -4,6 +4,7 @@ import { NoticiaService } from '../../services/noticia.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Empresa } from '../../models/empresa';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-detalle',
@@ -32,8 +33,7 @@ export class DetalleComponent implements OnInit {
     }
   }
   
-
-  constructor(public noticiService: NoticiaService, private router: ActivatedRoute) {
+  constructor(public noticiService: NoticiaService, private router: ActivatedRoute, private cambioDeRutas: Router) {
     const idNoticia = this.router.snapshot.params['id'];
     this.getDetails(idNoticia);
   }
@@ -48,8 +48,10 @@ export class DetalleComponent implements OnInit {
     })
   }
 
-  public buscar(termino : NgForm){
-  
+  public buscar(formulario : NgForm){
+    this.noticiService.textoBuscado=formulario.value.termino;
+    console.log(this.noticiService.textoBuscado+ " esto va al buscador");
+    this.cambioDeRutas.navigate(['/buscador']); 
   }
 
 }
