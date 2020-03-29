@@ -26,6 +26,7 @@ import { AbmNoticiaComponent } from './components/abm-noticia/abm-noticia.compon
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { AbmNoticiaComponent } from './components/abm-noticia/abm-noticia.compon
     HomeComponent,
     TinyComponent,
     AbmNoticiaComponent
+
   ],
   imports: [
     BrowserModule,

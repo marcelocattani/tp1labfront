@@ -8,6 +8,15 @@ import { Noticia } from 'src/app/models/noticia';
   styleUrls: ['./abm-noticia.component.css']
 })
 export class AbmNoticiaComponent implements OnInit {
+  totalPages: Array<number>;
+
+  page = 0;
+  size = 7;
+  order = 'id';
+  asc = true;
+
+  isFirst = false;
+  isLast = false;
 
   public newsList: Noticia[];
   public news: Noticia = {
@@ -27,10 +36,19 @@ export class AbmNoticiaComponent implements OnInit {
   }
 
   getAllnews() {
-    this.noticiaService.getAll().subscribe( res => {
-      this.newsList = res;
-    });
+    this.noticiaService.noticias(this.page, this.size, this.order, this.asc).subscribe( data => {
+      this.newsList = data.content;
+      this.isFirst = data.first;
+      this.isLast = data.last;
+      this.totalPages = new Array(data['totalPages']);
+      console.log(data);
+    },
+    err => {
+      console.log(err.error);
+    }
+    );
   }
+ 
 
   delete(news: Noticia) {
     const opcion = confirm('¿Desea eliminar este registro?');
@@ -45,6 +63,34 @@ export class AbmNoticiaComponent implements OnInit {
     }
   }
 
+sort(): void {
+    this.asc = !this.asc;
+    this.getAllnews();
+  }
+
+  rewind(): void {
+    if (!this.isFirst) {
+      this.page--;
+      this.getAllnews();
+    }
+  }
+
+  forward(): void {
+    if (!this.isLast) {
+      this.page++;
+      this.getAllnews();
+    }
+  }
+
+  setPage(page: number): void {
+    this.page = page;
+    this.getAllnews();
+  }
+  
+  setOrder(order: string): void {
+    this.order = order;
+    this.getAllnews();
+  }
 
 
 
