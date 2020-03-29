@@ -44,9 +44,11 @@ export class AbmNoticiaComponent implements OnInit {
       console.log(data);
     },
     err => {
+
       error=>{
         console.log('failure Response (getAllNews) ')
       }
+
     }
     );
   }
