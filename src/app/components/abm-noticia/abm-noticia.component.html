@@ -13,12 +13,12 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <table class="table table-hover">
+                <table class="table table-hover"> 
                     <thead>
-                        <tr>
-                            <th scope="col">Title</th>
-                            <th scope="col">Enterprise</th>
-                            <th scope="col">&nbsp;</th>
+                        <tr>    
+                            <th scope="col" (click)="setOrder('tituloDeLaNoticia')"><a class="news-title">Title</a></th>
+                            <th scope="col"  >Enterprise</th>
+                            <th scope="col"><i class="fas fa-sort" (click)="sort()"></i></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,6 +32,16 @@
                                 <button type="button" class="btn btn-danger" (click)="delete(news)">Delete</button>
                             </td>
                         </tr>
+                        <tr>
+                            <td><i class="fas fa-angle-double-left fa-2x" (click)="rewind()"></i></td>
+                            <td colspan="2">
+                              <span *ngFor="let p of totalPages; let i = index">
+                                <a style="cursor: pointer;" (click)="setPage(i)"
+                                [ngClass]="{'text-primary': i === page }">{{ i+1 }}&nbsp;&nbsp;&nbsp;</a>
+                              </span>
+                            </td>
+                            <td><i class="fas fa-angle-double-right fa-2x" (click)="forward()"></i></td>
+                          </tr>
                     </tbody>
                 </table>
             </div>
