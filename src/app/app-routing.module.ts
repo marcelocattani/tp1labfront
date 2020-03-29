@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './components/index/index.component';
 import { TinyComponent } from './components/tiny/tiny.component';
 import { AbmNoticiaComponent } from './components/abm-noticia/abm-noticia.component';
+import { AbmEmpresaComponent } from './components/abm-empresa/abm-empresa.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'home/:id',component: HomeComponent},
   {path: 'tiny/:id',component: TinyComponent},
   {path: 'abmnoticias',component: AbmNoticiaComponent},
+  {path: 'empresa',component: AbmEmpresaComponent},
   {path: '**',component: Page404Component},
 ];
 
