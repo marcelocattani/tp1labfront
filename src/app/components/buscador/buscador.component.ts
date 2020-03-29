@@ -3,7 +3,6 @@ import { Noticia } from '../../models/noticia';
 import { Router } from '@angular/router';
 import { NoticiaService } from 'src/app/services/noticia.service';
 import { NgForm } from '@angular/forms';
-import { Empresa } from '../../models/empresa'
 
 
 @Component({

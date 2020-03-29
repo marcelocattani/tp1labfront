@@ -15,8 +15,8 @@ export class AbmEmpresaComponent implements OnInit {
   constructor(private noticiaService: NoticiaService, private empresaService: EmpresaService, private cambioDeRutas: Router) { }
 
   public empresas: Empresa[];
-  public empresa: Empresa = {
-    id: null,
+  public empresaActual: Empresa = {
+    id: 0,
     denominacion: "",
     domicilio: "",
     email: "",
@@ -40,17 +40,22 @@ export class AbmEmpresaComponent implements OnInit {
     console.log(this.empresas);
   }
 
-  onDeleteEmpresa(idEmpresa: number){
-    const confirmation = confirm("are you sure you want to delete this book?");
-    console.log(idEmpresa);
-    //if(confirmation){
-    //  this.empresaService.delete(idEmpresa);
-    //}
+  onDeleteEmpresa(empresa: Empresa){
+    const confirmation = confirm("EStas seguro de borrr esta empresa?");
+    console.log(empresa.id);
+    if(confirmation){
+      this.empresaService.delete(empresa.id).subscribe(
+        res => {
+          alert('El registro fue eliminado con éxito');
+          const indexEmpresa = this.empresas.indexOf(empresa);
+          this.empresas.splice(indexEmpresa, 1);
+        });
+    }
   }
 
   onPreUpdateEmpresa(empresa: Empresa){
     console.log(empresa);
-    //this.dataApi.selectedBook= Object.assign({}, book);
+    this.empresaActual = empresa;
   }
 
   public buscar(formulario : NgForm){

@@ -24,6 +24,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EditorModule} from '@tinymce/tinymce-angular';
 import { AbmNoticiaComponent } from './components/abm-noticia/abm-noticia.component';
 import { AbmEmpresaComponent } from './components/abm-empresa/abm-empresa.component';
+import { EmpresaModalComponent } from './components/empresa-modal/empresa-modal.component';
 
 
 
@@ -37,7 +38,8 @@ import { AbmEmpresaComponent } from './components/abm-empresa/abm-empresa.compon
     HomeComponent,
     TinyComponent,
     AbmNoticiaComponent,
-    AbmEmpresaComponent
+    AbmEmpresaComponent,
+    EmpresaModalComponent
   ],
   imports: [
     BrowserModule,

@@ -40,7 +40,7 @@
 
       <li>
         <h1>
-          <a href="/home/{{empresa.id}}" style="color:white"><small>{{empresa.denominacion}}</small></a>
+          <a href="/home" style="color:white"><small></small></a>
         </h1>
       </li>
 
@@ -52,14 +52,14 @@
       <div class="nav-item mr-4" style="float: left">
         <span style="color:white">Telefono: </span>
         <br>
-        <h3><a href="callto:#" style="color:white"> {{empresa.telefono}}</a></h3>
+        <h3><a href="callto:#" style="color:white"></a></h3>
       </div>
 
       <div class="nav-item mr-4" style="float: left">
         <small>
           <span style="color:white">Horario: </span>
           <br>
-          <h3><span style="color:white">{{empresa.horarioDeAtencion}}</span></h3>
+          <h3><span style="color:white"></span></h3>
         </small>
       </div>
 
@@ -72,7 +72,8 @@
   </div>
   <div id="row" class="container mt-3 col-lg-10">
     <div class="col">
-      <button class="btn btn-success float-right mb-3" data-toggle="modal" data-target="#modalEmpresa">Nueva Empresa</button>
+      <button class="btn btn-success float-right mb-3" data-toggle="modal" data-target="#modalEmpresa">Nueva
+        Empresa</button>
 
       <table class="table table-hover">
         <thead>
@@ -93,28 +94,35 @@
         <tbody>
           <tr *ngFor="let empresa of empresas; index as i">
             <th scope="row">{{i+1}}</th>
-            <td>{{empresa.denominacion}}</td><!--Denominacion-->
-            <td>{{empresa.domicilio}}</td><!--domicilio-->
-            <td>{{empresa.email}}</td><!--Email-->
-            <td>{{empresa.horarioDeAtencion}}</td><!--Horario de atencion-->
-            <td>{{empresa.latitud}}</td><!--Latitud-->
-            <td>{{empresa.longitud}}</td><!--Longitud-->
-            <td>{{empresa.quienesSomos}}</td><!--Quienes somos-->
-            <td>{{empresa.telefono}}</td><!--Telefono-->
+            <td>{{empresa.denominacion}}</td>
+            <!--Denominacion-->
+            <td>{{empresa.domicilio}}</td>
+            <!--domicilio-->
+            <td>{{empresa.email}}</td>
+            <!--Email-->
+            <td>{{empresa.horarioDeAtencion}}</td>
+            <!--Horario de atencion-->
+            <td>{{empresa.latitud}}</td>
+            <!--Latitud-->
+            <td>{{empresa.longitud}}</td>
+            <!--Longitud-->
+            <td>{{empresa.quienesSomos}}</td>
+            <!--Quienes somos-->
+            <td>{{empresa.telefono}}</td>
+            <!--Telefono-->
             <td>
-              <button class="btn badge-primary" data-toggle="modal" data-target="#modalBook"
+              <button class="btn badge-primary" data-toggle="modal" data-target="#modalEmpresa"
                 (click)="onPreUpdateEmpresa(empresa)">Update</button>
             </td>
             <td>
-              <button class="btn badge-danger" (click)="onDeleteEmpresa(empresa.id)">Delete</button>
+              <button class="btn badge-danger" (click)="onDeleteEmpresa(empresa)">Delete</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-</div>
+  </div>
 </body>
 
-
-
 </html>
+<app-empresa-modal [empresaActual]="empresaActual"></app-empresa-modal>
