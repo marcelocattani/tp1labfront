@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NoticiaService extends CommonService<Noticia> {
-
+testUrl:string
   constructor(http: HttpClient) {
     super(http);
     this.baseUrl = "http://localhost:9001/api/v1/noticia/";
@@ -25,6 +25,7 @@ export class NoticiaService extends CommonService<Noticia> {
   buscar(texto: string) {
     return this.http.get<Noticia[]>(this.baseUrl + 'search?word=' + texto);
   }
+
 
   textoBuscado: string;
 }

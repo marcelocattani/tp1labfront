@@ -44,7 +44,11 @@ export class AbmNoticiaComponent implements OnInit {
       console.log(data);
     },
     err => {
-      console.log(err.error);
+
+      error=>{
+        console.log('failure Response (getAllNews) ')
+      }
+
     }
     );
   }
@@ -58,6 +62,8 @@ export class AbmNoticiaComponent implements OnInit {
           alert('El registro fue eliminado con éxito');
           const indexNews = this.newsList.indexOf(news);
           this.newsList.splice(indexNews, 1);
+        }, error=>{
+          console.log('failure delete')
         }
       );
     }
