@@ -32,7 +32,4 @@ export class CommonService <E>{
     return this.http.put<E>(this.baseUrl + id, entity);
   }
 
-  
-
-  
 }

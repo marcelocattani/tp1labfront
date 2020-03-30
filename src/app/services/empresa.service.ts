@@ -12,4 +12,17 @@ export class EmpresaService extends CommonService<Empresa>{
     super(http);
     this.baseUrl = "http://localhost:9001/api/v1/empresa/";
   }
+
+  public selectedEmpresa: Empresa = {
+      id: null,
+      denominacion: "",
+      domicilio: "",
+      email: "",
+      horarioDeAtencion : "",
+      latitud : null,
+      longitud : null,
+      quienesSomos : "",
+      telefono : ""
+  };
+  
 }
