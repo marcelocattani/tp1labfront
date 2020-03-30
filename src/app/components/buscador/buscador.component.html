@@ -97,17 +97,17 @@
               <tbody *ngFor="let noticia of noticias">
                 <tr>
                   <td>
-                    <a href="noticia.php?idNoticia=870">
+                    <a [routerLink]="['/detalle/',noticia.id]">
                       <img width="250px" class="imgNoticia"
                         src="http://localhost:82/template_html/images/page-1_slide1.jpg?1583775512626" alt="">
                     </a>
                   </td>
                   <td width="25"></td>
                   <td style="text-align:justify;" valign="top">
-                    <a style="text-align:justify; font-size:20px" href="noticia.php?idNoticia=870" class="banner">
+                    <a style="text-align:justify; font-size:20px" [routerLink]="['/detalle/',noticia.id]"class="banner">
                       {{noticia.tituloDeLaNoticia}} </a>
                     <div class="verOcultar">
-                      {{noticia.resumenDeLaNoticia}}<a href="noticia.php?idNoticia=870" style="color:blue"> Leer Mas -
+                      {{noticia.resumenDeLaNoticia}}<a [routerLink]="['/detalle/',noticia.id]" style="color:blue"> Leer Mas -
                         {{noticia.fechaPublicacion}}</a>
                     </div>
                   </td>                 
