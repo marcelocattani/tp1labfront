@@ -46,7 +46,9 @@
 
             </div>
         </div>
-        <div class="contenedor-imagen mt-5">
+        <button type="button" class="btn btn-danger mt-1 mr-1 mb-1" (click)="eliminar()">Eliminar</button>
+        <button type="button" class="btn btn-warning mt-1 mb-1" (click)="actualizar()">Actualizar</button>
+        <div class="contenedor-imagen">
             <div class="titulo">{{noticia.tituloDeLaNoticia}}</div>
             <img [src]="noticia.imagenNoticia" alt="">
         </div>

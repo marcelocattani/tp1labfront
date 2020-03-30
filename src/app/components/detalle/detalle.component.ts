@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class DetalleComponent implements OnInit {
 
-
+  public idNoticia : number = null;
   public noticia : Noticia = {
     contenidoHtml : "",
     fechaPublicacion : "",
@@ -34,8 +34,8 @@ export class DetalleComponent implements OnInit {
   }
   
   constructor(public noticiService: NoticiaService, private router: ActivatedRoute, private cambioDeRutas: Router) {
-    const idNoticia = this.router.snapshot.params['id'];
-    this.getDetails(idNoticia);
+    this.idNoticia = this.router.snapshot.params['id'];
+    this.getDetails(this.idNoticia);
   }
 
   ngOnInit(): void {
@@ -52,6 +52,40 @@ export class DetalleComponent implements OnInit {
     this.noticiService.textoBuscado=formulario.value.termino;
     console.log(this.noticiService.textoBuscado+ " esto va al buscador");
     this.cambioDeRutas.navigate(['/buscador']); 
+  }
+
+  public eliminar(){
+    if(confirm("Desea eliminar")){
+      this.noticiService.delete(this.idNoticia).subscribe(data =>{
+        if(data) {
+          this.noticia = {
+            contenidoHtml : "",
+            fechaPublicacion : "",
+            imagenNoticia : "",
+            publicada : "",
+            resumenDeLaNoticia : "",
+            tituloDeLaNoticia : "",
+            empresa : {
+              denominacion : "",
+              domicilio : "", 
+              email : "", 
+              horarioDeAtencion : "", 
+              latitud : null,
+              longitud : null,
+              quienesSomos : "",
+              telefono : ""       
+            }
+          }
+          this.cambioDeRutas.navigate(['/'])
+        } else {
+          console.error(Error);          
+        }
+      })
+    }
+  }
+
+  public actualizar(){
+    this.cambioDeRutas.navigate(['/tiny/'+this.idNoticia]);
   }
 
 }
