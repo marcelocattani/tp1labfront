@@ -83,6 +83,9 @@ public iniciarMapa(){
       .setLngLat([this.empresa.longitud,this.empresa.latitud])
       
       .addTo(this.mapa);
-      console.log('LONG='+this.empresa.longitud+'LAT= '+this.empresa.latitud);
+  }
+
+  public agregarNoticia(){
+    this.cambioDeRutas.navigate(['/tiny/0']);
   }
 }

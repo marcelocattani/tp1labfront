@@ -1,12 +1,12 @@
 <div class="add-news-content">
   <div class="container">
     <div *ngIf="idAux===0 else update">
-      <h3 class="new-news-title">Create News</h3>
+      <h3 class="new-news-title">Crear Noticia</h3>
     </div>
     <ng-template #update>
-      <h3 class="new-news-title">Update News</h3>
+      <h3 class="new-news-title">Actualizar Noticia</h3>
       <br> 
-      <label class="news-title">Enterprise</label>
+      <label class="news-title">Empresa Actual</label>
       <h6 class="new-news-title">{{noticia.empresa.denominacion}}</h6>
       <br> 
   </ng-template>
@@ -14,20 +14,20 @@
     
     <form name="formNews" #formNews="ngForm" (ngSubmit)="addNews()">
       <div class="form-group">
-        <label class="news-title">Select Enterprise</label>
+        <label class="news-title">Seleccionar Empresa</label>
         <select name="enterprise" class="form-control custom-select custom-select-lg mb-3" [(ngModel)]="idEnterprise" (change)="mostrar($event.target.value)" >
           <option [value]="empresa.id" *ngFor="let empresa of empresas" >
    {{empresa.denominacion}}
           </option>
       </select>
       <div  class="form-group">
-        <label class="news-title">Title</label>
+        <label class="news-title">Titulo</label>
         <input name="title"[(ngModel)]="titleNews" type="text" class="form-control" placeholder="Title">
       </div>
 
       </div>
       <div class="form-group">
-        <label class="news-title">Image</label>
+        <label class="news-title">Imagen</label>
         <input name="image" [(ngModel)]="srcImg" type="text"  class="form-control"  placeholder="Url" >
       </div>
       <div class="navbar-brand form-group">
@@ -36,19 +36,19 @@
         </a>
       </div>
       <div class="form-group">
-        <label class="news-title">Content</label>
+        <label class="news-title">Contenido</label>
         <editor name="Content" [(ngModel)]="content" apiKey=1o6v69xl8r9l0px050uatww4ohflwiackbpjoegjj9dhlnna  [init]="{plugins: 'code'}"></editor>
       </div>
       <div class="form-group">
-        <label class="news-title">Summary</label>
+        <label class="news-title">Resumen</label>
         <textarea name="Summary" [(ngModel)]="summary" class='form-control' rows="3" ></textarea>
       </div>
       <div class="form-group">
 
-        <button  *ngIf="idAux===0 else updateNews" type="submit" class="btn btn-primary">Post</button>
+        <button  *ngIf="idAux===0 else updateNews" type="submit" class="btn btn-primary">Publicar</button>
         <ng-template #updateNews>
 
-          <button type="submit" class="btn btn-primary">Update</button>
+          <button type="submit" class="btn btn-primary">Actualizar</button>
       </ng-template>
       </div>
     </form >
