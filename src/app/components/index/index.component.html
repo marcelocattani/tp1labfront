@@ -2,7 +2,8 @@
     <td>
         <a href="#" routerLink="/empresa">Para agregar empresas</a>
     </td>
-
+    <br>
+   
     <tr *ngFor="let empresa of empresas">
         <td>
             {{empresa.denominacion}}
@@ -11,4 +12,8 @@
             <a href="#" routerLink="/home/{{empresa.id}}">URL PAGINA HOME</a>
         </td>
     </tr>
+    <td>
+        <a href="#" routerLink="/abmnoticias">Para agregar noticia</a>
+    </td>
+
 </table>
